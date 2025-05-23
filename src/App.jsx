@@ -1,10 +1,10 @@
-import { Search } from "./components/Search.jsx"
+import { HomePage } from "./Pages/HomePage.jsx"
 
 
 export const App = () => {
   return (
     <>
-      <Search />
+      <HomePage />
     </>
   )
 }

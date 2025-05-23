@@ -2,20 +2,18 @@ import { useEffect, useState } from "react";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 
 export const Search = () => {
-  const [food, setFood] = useState("");
+  const [userFood, setUserFood] = useState("");
 
+  const setFood = useRecipeStore((state) => state.setFood); // Set food variable in my store so I can acess userFood in other components
   const recipes = useRecipeStore((state) => state.recipes);
   const searchRecipe = useRecipeStore((state) => state.searchRecipe);
-  const displayFullRecipes = useRecipeStore((state) => state.displayFullRecipes);
-  const loading = useRecipeStore((state) => state.loading);
-  const error = useRecipeStore((state) => state.error);
-
-  
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (food !== "") {
-      searchRecipe(food);
+    if (userFood !== "") {
+      searchRecipe(userFood);
+      setFood(userFood);
+      setUserFood("");
       console.log(recipes);
     }
   };
@@ -29,25 +27,13 @@ export const Search = () => {
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          value={food}
+          value={userFood}
           onChange={(e) => {
-            setFood(e.target.value);
+            setUserFood(e.target.value);
           }}
         />
         <button type="submit">Search Recipe</button>
       </form>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <p>Food type: {food}</p>
-          <p>Recipe Title: {recipe.title}</p>
-          <img src={recipe.image} alt={recipe.title} width={50} />
-          <button onClick={() => displayFullRecipes(recipe.id)}>View Full Details</button>
-        </div>
-      ))}
-
-      <button onClick={displayFullRecipes}>Dispalay Full Recipe</button>
     </>
   );
 };
