@@ -35,16 +35,20 @@ export const useRecipeStore = create(
       }
     },
 
-    displayFullRecipe: async () => {
+    displayFullRecipes: async (id) => {
       set((state) => {
-        state.loading = false;
+        state.loading = true;
         state.error = null;
       });
-    //   const id = recipes.filter((recipe) => recipe.id);
+    
       const apiKey = get().apiKey;
       const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
       try {
         const response = await axios.get(url);
+        console.log(response.data);
+        set((state) => {
+            state.loading = false;
+        })
       } catch (err) {
         set((state) => {
           state.error = err.message;

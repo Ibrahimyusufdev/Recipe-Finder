@@ -6,10 +6,11 @@ export const Search = () => {
 
   const recipes = useRecipeStore((state) => state.recipes);
   const searchRecipe = useRecipeStore((state) => state.searchRecipe);
+  const displayFullRecipes = useRecipeStore((state) => state.displayFullRecipes);
   const loading = useRecipeStore((state) => state.loading);
   const error = useRecipeStore((state) => state.error);
 
-  const displayFullRecipes = useRecipeStore((state) => state.displayFullRecipes);
+  
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -42,6 +43,7 @@ export const Search = () => {
           <p>Food type: {food}</p>
           <p>Recipe Title: {recipe.title}</p>
           <img src={recipe.image} alt={recipe.title} width={50} />
+          <button onClick={() => displayFullRecipes(recipe.id)}>View Full Details</button>
         </div>
       ))}
 
