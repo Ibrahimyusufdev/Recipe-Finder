@@ -11,6 +11,7 @@ export const Search = () => {
     e.preventDefault()
     if(food !== "") {
         searchRecipe(food);
+        console.log(recipes);
     }
   }
   return (

@@ -12,12 +12,11 @@ export const useRecipeStore = create(
       const url = `https://api.spoonacular.com/recipes/complexSearch?query=${food}&number=10&apiKey=${apiKey}`;
 
       try {
-        const response = await fetch(url);
-        const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        const response = await axios.get(url);
+        console.log(response);
 
         set((state) => {
-          state.recipes.push(jsonResponse);
+          state.recipes.push(response);
         });
       } catch (err) {
         console.log(err.message);
