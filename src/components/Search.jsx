@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 
 export const Search = () => {
-  const [userFood, setUserFood] = useState("");
+  const [input, setInput] = useState("");
 
-  const setFood = useRecipeStore((state) => state.setFood); // Set food variable in my store so I can acess userFood in other components
+  const setFood = useRecipeStore((state) => state.setFood); // Set food variable in my store so I can acess input in other components
   const recipes = useRecipeStore((state) => state.recipes);
   const searchRecipe = useRecipeStore((state) => state.searchRecipe);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (userFood !== "") {
-      searchRecipe(userFood);
-      setFood(userFood);
-      setUserFood("");
+    if (input !== "") {
+      searchRecipe(input);
+      setFood(input);
+      setInput("");
       console.log(recipes);
     }
   };
@@ -27,9 +27,9 @@ export const Search = () => {
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          value={userFood}
+          value={input}
           onChange={(e) => {
-            setUserFood(e.target.value);
+            setInput(e.target.value);
           }}
         />
         <button type="submit">Search Recipe</button>

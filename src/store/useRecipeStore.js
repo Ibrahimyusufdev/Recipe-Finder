@@ -5,7 +5,7 @@ import axios from "axios";
 export const useRecipeStore = create(
   immer((set, get) => ({
     food: "",
-    setFood: (userFood) => set((state) => {state.food = userFood}),
+    setFood: (userInput) => set((state) => {state.food = userInput}),
     recipes: [],
     fullRecipes: {},
     loading: false,
