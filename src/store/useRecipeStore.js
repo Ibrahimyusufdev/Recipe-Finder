@@ -23,6 +23,7 @@ export const useRecipeStore = create(
         set((state) => {
             state.recipes = response.data.results;
             state.loading = false;
+            if (state.recipes.length === 0) throw new Error("Recipe Not Found")
         })
       } catch (err) {
         set((state) => {
