@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 
 export const Search = () => {
@@ -6,14 +6,21 @@ export const Search = () => {
 
   const recipes = useRecipeStore((state) => state.recipes);
   const searchRecipe = useRecipeStore((state) => state.searchRecipe);
+  const loading = useRecipeStore((state) => state.loading);
+  const error = useRecipeStore((state) => state.error);
 
   const handleSearch = (e) => {
-    e.preventDefault()
-    if(food !== "") {
-        searchRecipe(food);
-        console.log(recipes);
+    e.preventDefault();
+    if (food !== "") {
+      searchRecipe(food);
+      console.log(recipes);
     }
-  }
+  };
+
+  useEffect(() => {
+    console.log(recipes);
+  }, [recipes]);
+
   return (
     <>
       <form onSubmit={handleSearch}>
@@ -24,7 +31,17 @@ export const Search = () => {
             setFood(e.target.value);
           }}
         />
+        <button type="submit">Search Recipe</button>
       </form>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      {recipes.map((recipe) => (
+        <div key={recipe.id}>
+          <p>Food type: {food}</p>
+          <p>Recipe Title: {recipe.title}</p>
+          <img src={recipe.image} alt={recipe.title} width={50} />
+        </div>
+      ))}
     </>
   );
 };
