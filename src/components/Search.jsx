@@ -9,6 +9,8 @@ export const Search = () => {
   const loading = useRecipeStore((state) => state.loading);
   const error = useRecipeStore((state) => state.error);
 
+  const displayFullRecipes = useRecipeStore((state) => state.displayFullRecipes);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (food !== "") {
@@ -42,6 +44,8 @@ export const Search = () => {
           <img src={recipe.image} alt={recipe.title} width={50} />
         </div>
       ))}
+
+      <button onClick={displayFullRecipes}>Dispalay Full Recipe</button>
     </>
   );
 };
