@@ -1,8 +1,29 @@
+import { useState } from "react";
+import { useRecipeStore } from "../store/useRecipeStore.js";
 
 export const Search = () => {
-const apiKey = import.meta.env.VITE_API_KEY;
-console.log(apiKey);
-    return (
-        <h1>Search</h1>
-    )
-}
+  const [food, setFood] = useState("");
+
+  const recipes = useRecipeStore((state) => state.recipes);
+  const searchRecipe = useRecipeStore((state) => state.searchRecipe);
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    if(food !== "") {
+        searchRecipe(food);
+    }
+  }
+  return (
+    <>
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          value={food}
+          onChange={(e) => {
+            setFood(e.target.value);
+          }}
+        />
+      </form>
+    </>
+  );
+};
