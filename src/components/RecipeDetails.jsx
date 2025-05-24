@@ -11,13 +11,16 @@ export const RecipeDetails = () => {
   const setShoppingList = useRecipeStore((state) => state.setShoppingList);
 
   const { id } = useParams();
+  const isEmptyRecipe =
+    !loading && !error && (!fullRecipe || Object.keys(fullRecipe).length === 0);
 
   return (
     <>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {Object.keys(fullRecipe).length !== 0 ? (
-        <>
+      {!loading && !error && isEmptyRecipe && <p>No Recipe Found</p>}
+      {!loading && !error && !isEmptyRecipe && (
+        <section>
           <p>Recipe ID: {id}</p>
           <h1>Food Type: {food}</h1>
           <h3>Recipe Title: {fullRecipe.title}</h3>
@@ -41,7 +44,7 @@ export const RecipeDetails = () => {
             <div
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
-                  fullRecipe.instructions || "No Instructions"
+                  fullRecipe.instructions ?? "No Instructions"
                 ),
               }}
             />
@@ -77,9 +80,7 @@ export const RecipeDetails = () => {
           <button onClick={() => setFavoriteRecipe(fullRecipe)}>
             Add to Favorite
           </button>
-        </>
-      ) : (
-        <p>No Recipe Found</p>
+        </section>
       )}
     </>
   );
