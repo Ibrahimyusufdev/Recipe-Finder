@@ -16,7 +16,7 @@ export const RecipeDetails = () => {
     <>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {fullRecipe && (
+      {Object.keys(fullRecipe).length !== 0 ? (
         <>
           <p>Recipe ID: {id}</p>
           <h1>Food Type: {food}</h1>
@@ -28,8 +28,9 @@ export const RecipeDetails = () => {
               {fullRecipe.extendedIngredients.map((ingredient) => (
                 <li key={crypto.randomUUID()}>
                   <p>{ingredient.original}</p>
-                  <button onClick={() => setShoppingList(ingredient)} >Add to Shopping List</button>
-                
+                  <button onClick={() => setShoppingList(ingredient)}>
+                    Add to Shopping List
+                  </button>
                 </li>
               ))}
             </ul>
@@ -77,6 +78,8 @@ export const RecipeDetails = () => {
             Add to Favorite
           </button>
         </>
+      ) : (
+        <p>No Recipe Found</p>
       )}
     </>
   );

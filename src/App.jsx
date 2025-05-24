@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./Pages/HomePage.jsx";
-import { RecipeDetailPage } from "./Pages/RecipeDetailPage.jsx";
 import { RecipeDetails } from "./components/RecipeDetails.jsx";
 
 

@@ -8,6 +8,7 @@ export const useRecipeStore = create(
     immer((set, get) => ({
       loading: false,
       error: null,
+      apiKey: import.meta.env.VITE_API_KEY,
       food: "",
       setFood: (userInput) =>
         set((state) => {
@@ -15,6 +16,7 @@ export const useRecipeStore = create(
         }),
       recipes: [],
       fullRecipe: {},
+
       favoriteRecipe: [],
       setFavoriteRecipe: (recipe) =>
         set((state) => {
@@ -28,6 +30,7 @@ export const useRecipeStore = create(
             state.error = "Already added to favorite";
           }
         }),
+
       shoppingList: [],
       setShoppingList: (ingredient) =>
         set((state) => {
@@ -41,7 +44,7 @@ export const useRecipeStore = create(
             state.error = "Already added to shopping list";
           }
         }),
-      apiKey: import.meta.env.VITE_API_KEY,
+
       searchRecipe: async (userFood) => {
         set((state) => {
           state.loading = true;
@@ -55,6 +58,7 @@ export const useRecipeStore = create(
           const response = await axios.get(url);
           console.log(response);
 
+          // set fetched data to my local recipe array & set loading to false
           set((state) => {
             state.recipes = response.data.results ?? [];
             state.loading = false;
@@ -85,18 +89,21 @@ export const useRecipeStore = create(
             throw new Error("No recipe details found");
           }
           console.log(response.data);
+
+          // set fetched data to my local fullRecipe object & set loading to false
           set((state) => {
             state.fullRecipe = data;
             state.loading = false;
           });
         } catch (err) {
           set((state) => {
-            state.error = err.message || "Something went wrong";
+            state.error = err.message ?? "Something went wrong";
             state.loading = false;
           });
         }
       },
     })),
+
     {
       name: "recipe-storage",
       partialize: (state) => ({
