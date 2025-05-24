@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 
 export const RecipeCard = () => {
@@ -16,9 +17,9 @@ export const RecipeCard = () => {
           <p>Food type: {food}</p>
           <p>Recipe Title: {recipe.title}</p>
           <img src={recipe.image} alt={recipe.title} width={50} />
-          <button onClick={() => displayFullRecipes(recipe.id)}>
+          <Link to={`recipe/${recipe.id}`} onClick={() => displayFullRecipes(recipe.id)}>
             View Full Details
-          </button>
+          </Link>
         </div>
       ))}
     </>

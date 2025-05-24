@@ -1,13 +1,14 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import { persist } from "zustand/middleware";
 import axios from "axios";
 
-export const useRecipeStore = create(
+export const useRecipeStore = create(persist(
   immer((set, get) => ({
     food: "",
     setFood: (userInput) => set((state) => {state.food = userInput}),
     recipes: [],
-    fullRecipes: {},
+    fullRecipe: {},
     loading: false,
     error: null,
     apiKey: import.meta.env.VITE_API_KEY,
@@ -42,23 +43,29 @@ export const useRecipeStore = create(
       set((state) => {
         state.loading = true;
         state.error = null;
+        state.fullRecipe = {}
       });
     
       const apiKey = get().apiKey;
       const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
       try {
         const response = await axios.get(url);
+        const data = response?.data;
+        if(!data || Object.keys(data).length === 0) {
+          throw new Error("No recipe details found");
+        }
         console.log(response.data);
         set((state) => {
-            state.fullRecipes = response.data ?? {};
+            state.fullRecipe = data;
             state.loading = false;
         })
       } catch (err) {
         set((state) => {
-          state.error = err.message;
+          state.error = err.message || "Something went wrong";
           state.loading = false;
         });
       }
     },
+    
   }))
-);
+));
