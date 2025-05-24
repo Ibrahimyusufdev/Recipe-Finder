@@ -15,7 +15,7 @@ export const RecipeDetails = () => {
   return (
     <>
       {loading && <p>Loading...</p>}
-      {error && <p>Error: ${error}</p>}
+      {error && <p>Error: {error}</p>}
       {fullRecipe && (
         <>
           <p>Recipe ID: {id}</p>
@@ -28,7 +28,7 @@ export const RecipeDetails = () => {
               {fullRecipe.extendedIngredients.map((ingredient) => (
                 <li key={crypto.randomUUID()}>
                   <p>{ingredient.original}</p>
-                  <button onClick={() => setShoppingList(ingredient.original)} >Add to Shopping List</button>
+                  <button onClick={() => setShoppingList(ingredient)} >Add to Shopping List</button>
                 
                 </li>
               ))}

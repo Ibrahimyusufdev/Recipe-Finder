@@ -6,6 +6,8 @@ import axios from "axios";
 export const useRecipeStore = create(
   persist(
     immer((set, get) => ({
+      loading: false,
+      error: null,
       food: "",
       setFood: (userInput) =>
         set((state) => {
@@ -13,12 +15,32 @@ export const useRecipeStore = create(
         }),
       recipes: [],
       fullRecipe: {},
-      favoriteRecipe:[],
-      setFavoriteRecipe: (recipe) => set((state) => {state.favoriteRecipe.push(recipe)}),
+      favoriteRecipe: [],
+      setFavoriteRecipe: (recipe) =>
+        set((state) => {
+          const alreadyExists = state.favoriteRecipe.some(
+            (item) => item.id === recipe.id
+          );
+          if (!alreadyExists) {
+            state.favoriteRecipe.push(recipe);
+            state.error = null;
+          } else {
+            state.error = "Already added to favorite";
+          }
+        }),
       shoppingList: [],
-      setShoppingList: (id) => set((state) => {state.shoppingList.push(id)}),
-      loading: false,
-      error: null,
+      setShoppingList: (ingredient) =>
+        set((state) => {
+          const alreadyExists = state.shoppingList.some(
+            (item) => item.id === ingredient.id
+          );
+          if (!alreadyExists) {
+            state.shoppingList.push(ingredient);
+            state.error = null;
+          } else {
+            state.error = "Already added to shopping list";
+          }
+        }),
       apiKey: import.meta.env.VITE_API_KEY,
       searchRecipe: async (userFood) => {
         set((state) => {
@@ -83,7 +105,7 @@ export const useRecipeStore = create(
         food: state.food,
         favoriteRecipe: state.favoriteRecipe,
         shoppingList: state.shoppingList,
-      })
+      }),
     }
   )
 );
