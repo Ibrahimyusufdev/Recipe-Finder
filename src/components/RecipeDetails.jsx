@@ -8,6 +8,7 @@ export const RecipeDetails = () => {
   const loading = useRecipeStore((state) => state.loading);
   const error = useRecipeStore((state) => state.error);
   const setFavoriteRecipe = useRecipeStore((state) => state.setFavoriteRecipe);
+  const setShoppingList = useRecipeStore((state) => state.setShoppingList);
 
   const { id } = useParams();
 
@@ -25,7 +26,11 @@ export const RecipeDetails = () => {
             <h3>Ingredients</h3>
             <ul>
               {fullRecipe.extendedIngredients.map((ingredient) => (
-                <li key={crypto.randomUUID()}>{ingredient.original}</li>
+                <li key={crypto.randomUUID()}>
+                  <p>{ingredient.original}</p>
+                  <button onClick={() => setShoppingList(ingredient.original)} >Add to Shopping List</button>
+                
+                </li>
               ))}
             </ul>
           </div>

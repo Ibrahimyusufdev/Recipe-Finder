@@ -15,6 +15,8 @@ export const useRecipeStore = create(
       fullRecipe: {},
       favoriteRecipe:[],
       setFavoriteRecipe: (recipe) => set((state) => {state.favoriteRecipe.push(recipe)}),
+      shoppingList: [],
+      setShoppingList: (id) => set((state) => {state.shoppingList.push(id)}),
       loading: false,
       error: null,
       apiKey: import.meta.env.VITE_API_KEY,
@@ -80,6 +82,7 @@ export const useRecipeStore = create(
         recipes: state.recipes,
         food: state.food,
         favoriteRecipe: state.favoriteRecipe,
+        shoppingList: state.shoppingList,
       })
     }
   )
