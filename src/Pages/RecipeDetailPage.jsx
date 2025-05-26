@@ -1,5 +1,5 @@
-import { RecipeDetails } from "../components/RecipeDetails.jsx";
-import { useParams } from "react-router-dom";
+import { RecipeDetails } from '../components/RecipeDetails.jsx';
+import { useParams } from 'react-router-dom';
 
 export const RecipeDetailPage = () => {
   const { id } = useParams();

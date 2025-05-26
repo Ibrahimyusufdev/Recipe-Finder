@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
-import { useRecipeStore } from "../store/useRecipeStore.js";
-import DOMPurify from "dompurify";
+import { useParams } from 'react-router-dom';
+import { useRecipeStore } from '../store/useRecipeStore.js';
+import DOMPurify from 'dompurify';
 
 export const RecipeDetails = () => {
   const fullRecipe = useRecipeStore((state) => state.fullRecipe);
@@ -11,8 +11,7 @@ export const RecipeDetails = () => {
   const setShoppingList = useRecipeStore((state) => state.setShoppingList);
 
   const { id } = useParams();
-  const isEmptyRecipe =
-    !loading && !error && (!fullRecipe || Object.keys(fullRecipe).length === 0);
+  const isEmptyRecipe = !loading && !error && (!fullRecipe || Object.keys(fullRecipe).length === 0);
 
   return (
     <>
@@ -31,9 +30,7 @@ export const RecipeDetails = () => {
               {fullRecipe.extendedIngredients.map((ingredient) => (
                 <li key={crypto.randomUUID()}>
                   <p>{ingredient.original}</p>
-                  <button onClick={() => setShoppingList(ingredient)}>
-                    Add to Shopping List
-                  </button>
+                  <button onClick={() => setShoppingList(ingredient)}>Add to Shopping List</button>
                 </li>
               ))}
             </ul>
@@ -43,9 +40,7 @@ export const RecipeDetails = () => {
             <h3>Instructions:</h3>
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  fullRecipe.instructions ?? "No Instructions"
-                ),
+                __html: DOMPurify.sanitize(fullRecipe.instructions ?? 'No Instructions'),
               }}
             />
           </article>
@@ -77,9 +72,7 @@ export const RecipeDetails = () => {
           <a href={fullRecipe.sourceUrl} target="_blank">
             Read More about the recipe
           </a>
-          <button onClick={() => setFavoriteRecipe(fullRecipe)}>
-            Add to Favorite
-          </button>
+          <button onClick={() => setFavoriteRecipe(fullRecipe)}>Add to Favorite</button>
         </section>
       )}
     </>

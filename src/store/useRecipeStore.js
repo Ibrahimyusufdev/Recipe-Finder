@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
-import { persist } from "zustand/middleware";
-import axios from "axios";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
+import { persist } from 'zustand/middleware';
+import axios from 'axios';
 
 export const useRecipeStore = create(
   persist(
@@ -9,7 +9,7 @@ export const useRecipeStore = create(
       loading: false,
       error: null,
       apiKey: import.meta.env.VITE_API_KEY,
-      food: "",
+      food: '',
       setFood: (userInput) =>
         set((state) => {
           state.food = userInput;
@@ -20,28 +20,24 @@ export const useRecipeStore = create(
       favoriteRecipe: [],
       setFavoriteRecipe: (recipe) =>
         set((state) => {
-          const alreadyExists = state.favoriteRecipe.some(
-            (item) => item.id === recipe.id
-          );
+          const alreadyExists = state.favoriteRecipe.some((item) => item.id === recipe.id);
           if (!alreadyExists) {
             state.favoriteRecipe.push(recipe);
             state.error = null;
           } else {
-            state.error = "Already added to favorite";
+            state.error = 'Already added to favorite';
           }
         }),
 
       shoppingList: [],
       setShoppingList: (ingredient) =>
         set((state) => {
-          const alreadyExists = state.shoppingList.some(
-            (item) => item.id === ingredient.id
-          );
+          const alreadyExists = state.shoppingList.some((item) => item.id === ingredient.id);
           if (!alreadyExists) {
             state.shoppingList.push(ingredient);
             state.error = null;
           } else {
-            state.error = "Already added to shopping list";
+            state.error = 'Already added to shopping list';
           }
         }),
 
@@ -62,7 +58,7 @@ export const useRecipeStore = create(
           set((state) => {
             state.recipes = response.data.results ?? [];
             state.loading = false;
-            if (state.recipes.length === 0) throw new Error("Recipe Not Found");
+            if (state.recipes.length === 0) throw new Error('Recipe Not Found');
           });
         } catch (err) {
           set((state) => {
@@ -86,7 +82,7 @@ export const useRecipeStore = create(
           const response = await axios.get(url);
           const data = response?.data;
           if (!data || Object.keys(data).length === 0) {
-            throw new Error("No recipe details found");
+            throw new Error('No recipe details found');
           }
           console.log(response.data);
 
@@ -97,7 +93,7 @@ export const useRecipeStore = create(
           });
         } catch (err) {
           set((state) => {
-            state.error = err.message ?? "Something went wrong";
+            state.error = err.message ?? 'Something went wrong';
             state.loading = false;
           });
         }
@@ -105,7 +101,7 @@ export const useRecipeStore = create(
     })),
 
     {
-      name: "recipe-storage",
+      name: 'recipe-storage',
       partialize: (state) => ({
         fullRecipe: state.fullRecipe,
         recipes: state.recipes,
