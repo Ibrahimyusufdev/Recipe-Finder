@@ -24,7 +24,7 @@ export const Search = () => {
 
   return (
     <>
-      <form onSubmit={handleSearch}>
+      <form className="container mx-auto px-4" onSubmit={handleSearch}>
         <input
           type="text"
           value={input}

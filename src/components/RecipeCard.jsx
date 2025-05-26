@@ -10,6 +10,7 @@ export const RecipeCard = () => {
 
   return (
     <section className="border border-[#000] p-2">
+      <h1 className="font-bold text-6xl ">FinBiz Landing Page</h1>
       <div className="container mx-auto  px-4 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 ">
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
@@ -24,6 +25,7 @@ export const RecipeCard = () => {
           </div>
         ))}
       </div>
+      <button className="bg-black text-white rounded p-2">Submit</button>
     </section>
   );
 };
