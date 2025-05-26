@@ -9,19 +9,21 @@ export const RecipeCard = () => {
   const error = useRecipeStore((state) => state.error);
 
   return (
-    <>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <p>Food type: {food}</p>
-          <p>Recipe Title: {recipe.title}</p>
-          <img src={recipe.image} alt={recipe.title} width={50} />
-          <Link to={`recipe/${recipe.id}`} onClick={() => displayFullRecipes(recipe.id)}>
-            View Full Details
-          </Link>
-        </div>
-      ))}
-    </>
+    <section className="border border-[#000] p-2">
+      <div className="container mx-auto  px-4 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 ">
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
+        {recipes.map((recipe) => (
+          <div className="mb-4 border border-neutral-950" key={recipe.id}>
+            <p>Food type: {food}</p>
+            <p>Recipe Title: {recipe.title}</p>
+            <img src={recipe.image} alt={recipe.title} width={50} />
+            <Link to={`recipe/${recipe.id}`} onClick={() => displayFullRecipes(recipe.id)}>
+              View Full Details
+            </Link>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
