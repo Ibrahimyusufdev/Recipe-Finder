@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecipeStore } from "../store/useRecipeStore.js";
+import { MenuBar } from "../assets/svgs.jsx";
+import { SearchIcon } from "../assets/svgs.jsx";
 
 export const Search = () => {
   const [input, setInput] = useState("");
@@ -24,16 +26,32 @@ export const Search = () => {
 
   return (
     <>
-      <form className="container mx-auto px-4" onSubmit={handleSearch}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-        />
-        <button type="submit">Search Recipe</button>
-      </form>
+      <section className="bg-orange py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-14">
+            <MenuBar />
+            <p className="text-dark text-2xl">
+              <strong className="font-bold">Recipe</strong>{" "}
+              <span className="font-medium">finder</span>
+            </p>
+          </div>
+          <form
+            className="mt-6 flex sm:max-w-[40rem]  flex-wrap items-center gap-4 rounded-md bg-white p-2"
+            onSubmit={handleSearch}
+          >
+            <SearchIcon className="flex-1" />
+            <input
+              className="flex-1 bg-none p-1 text-base text-lg outline-none"
+              placeholder="Search recipes"
+              type="text"
+              value={input}
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+            />
+          </form>
+        </div>
+      </section>
     </>
   );
 };
