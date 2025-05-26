@@ -41,7 +41,7 @@ export const Search = () => {
           >
             <SearchIcon className="flex-1" />
             <input
-              className="flex-1 bg-none p-1 text-base text-lg outline-none"
+              className="flex-1 bg-none p-1 text-base outline-none"
               placeholder="Search recipes"
               type="text"
               value={input}

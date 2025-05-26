@@ -9,22 +9,25 @@ export const RecipeCard = () => {
   const error = useRecipeStore((state) => state.error);
 
   return (
-    <section className="border border-[#000] p-2">
-      <div className="container mx-auto  px-4 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+    <section className="mt-8 border border-[#0f0d0d] p-2">
+      <div className="container mx-auto px-4">
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
-        {recipes.map((recipe) => (
-          <div className="mb-4 border border-neutral-950" key={recipe.id}>
-            <p>Food type: {food}</p>
-            <p>Recipe Title: {recipe.title}</p>
-            <img src={recipe.image} alt={recipe.title} width={50} />
-            <Link to={`recipe/${recipe.id}`} onClick={() => displayFullRecipes(recipe.id)}>
-              View Full Details
-            </Link>
-          </div>
-        ))}
+        <article className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
+          {recipes.map((recipe) => (
+            
+            <div className="card-rounded card-shadow p-4 bg-white" key={recipe.id}>
+              <img className="rounded-full border-4 border-orange" src={recipe.image} alt={recipe.title}  />
+              <p>Food type: {food}</p>
+              <p>Recipe Title: {recipe.title}</p>
+              <Link to={`recipe/${recipe.id}`} onClick={() => displayFullRecipes(recipe.id)}>
+                View Full Details
+              </Link>
+            </div>
+          ))}
+        </article>
       </div>
-      <button className="bg-black text-white rounded p-2">Submit</button>
+      <button className="rounded bg-black p-2 text-white">Submit</button>
     </section>
   );
 };
