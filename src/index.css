@@ -17,6 +17,12 @@
     @apply font-urbanist;
   }
 
+
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
 }
 
 @layer components {
