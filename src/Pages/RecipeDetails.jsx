@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 import DOMPurify from "dompurify";
-import { Footer } from "./Footer.jsx";
+import { Footer } from "../components/Footer.jsx";
+import { Link } from "react-router-dom";
 
 export const RecipeDetails = () => {
   const fullRecipe = useRecipeStore((state) => state.fullRecipe);
@@ -20,7 +21,9 @@ export const RecipeDetails = () => {
   return (
     <>
       <section className="mt-4">
+        
         <div className="container mx-auto px-4">
+          <Link to="/">Back</Link>
           {loading && <p>Loading...</p>}
           {error && <p>Error: {error}</p>}
           {!loading && !error && isEmptyRecipe && <p>No Recipe Found</p>}

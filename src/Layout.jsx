@@ -1,14 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import { Search } from './components/Search.jsx';
-import { RecipeCard } from './components/RecipeCard.jsx';
+import { MenuBar } from './assets/svgs.jsx';
+import { Footer } from './components/Footer.jsx';
 
 export const Layout = () => {
   return (
     <>
-      <Search />
+      <MenuBar />
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 };
