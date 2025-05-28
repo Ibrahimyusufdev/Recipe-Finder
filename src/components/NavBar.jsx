@@ -1,43 +1,49 @@
 import { useState } from "react";
 import { MenuBar } from "../assets/svgs.jsx";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <header>
-      <nav className="bg-orange py-6">
-        <div className="container mx-auto flex flex-wrap items-center gap-14 px-4">
-          <button onClick={() => setIsMenuOpen((prev) => !prev)}>
-            <MenuBar />
-          </button>
-          <p className="text-2xl text-dark">
-            <strong className="font-bold">Recipe</strong>{" "}
-            <span className="font-medium">finder</span>
-          </p>
-        </div>
+    <header className="bg-orange">
+      <nav className="container mx-auto flex items-center justify-between px-4 py-6">
+        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <MenuBar />
+        </button>
+        <p className="text-2xl text-dark">
+          <strong className="font-bold">Recipe</strong> <span className="font-medium">finder</span>
+        </p>
+        {/* Desktop link */}
+        <ul className="hidden items-center gap-8 md:flex">
+          <li>
+            <a className="text-dark transition hover:text-white" href="#">
+              Shopping List
+            </a>
+          </li>
+          <li>
+            <a className="text-dark transition hover:text-white" href="#">
+              Favorite Recipe
+            </a>
+          </li>
+        </ul>
       </nav>
-      <article className="bg-orange">
-        <div className="container mx-auto px-4 py-5">
-          <ul className="flex flex-col items-center gap-2 hidden">
+      {/* Mobile DropDown */}
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <ul className="flex flex-col items-center gap-4 p-4 pb-4">
             <li>
-              <a
-                className="text-blue-500 underline transition duration-200 hover:text-blue-800"
-                href="#"
-              >
-                Shopping List
-              </a>
+            <a className="text-dark underline transition hover:text-white" href="#">
+              Shopping List
+            </a>
+          </li>
+          <li>
+            <a className="text-dark  underline transition hover:text-white" href="#">
+              Favorite Recipe
+            </a>
             </li>
-            <li>
-              <a
-                className="text-blue-500 underline transition duration-200 hover:text-blue-800"
-                href="#"
-              >
-                Favorite Recipe
-              </a>
-            </li>
-          </ul>
-        </div>
-      </article>
+        </ul>
+      </div>
     </header>
   );
 };
