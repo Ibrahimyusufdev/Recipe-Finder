@@ -55,8 +55,9 @@ export const RecipeDetails = () => {
                         className="rounded-md bg-orange px-4 py-2 text-sm text-white transition-colors hover:bg-orange/90"
                         onClick={() => {
                           setShoppingList(ingredient);
-                          toast.success("Successfully added to Shopping List");
-
+                          {
+                            // !error && toast.success("Successfully added to Shopping List");
+                          }
                         }}
                       >
                         Add to Shopping List
