@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 import { StarIcon } from "../assets/svgs.jsx";
-import { Footer } from "./Footer.jsx";
+import { LoadingSpin } from "./LoadingSpin.jsx";
 
 export const RecipeCard = () => {
   const food = useRecipeStore((state) => state.food);
@@ -13,7 +13,7 @@ export const RecipeCard = () => {
   return (
     <section className="mt-8 p-2">
       <div className="container mx-auto px-4">
-        {loading && <p>Loading...</p>}
+        {loading && <LoadingSpin />}
         {error && <p>Error: {error}</p>}
         <div>
           <h3 className="text-3xl font-bold">Healthy Recipes</h3>

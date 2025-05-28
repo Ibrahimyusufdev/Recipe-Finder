@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 import DOMPurify from "dompurify";
-import { Footer } from "../components/Footer.jsx";
 import { Link } from "react-router-dom";
+import { BackIcon } from "../assets/svgs.jsx";
 
 export const RecipeDetails = () => {
   const fullRecipe = useRecipeStore((state) => state.fullRecipe);
@@ -21,9 +21,10 @@ export const RecipeDetails = () => {
   return (
     <>
       <section className="mt-4">
-        
         <div className="container mx-auto px-4">
-          <Link to="/">Back</Link>
+          <Link className="mt-5" to="/">
+            <BackIcon />
+          </Link>
           {loading && <p>Loading...</p>}
           {error && <p>Error: {error}</p>}
           {!loading && !error && isEmptyRecipe && <p>No Recipe Found</p>}
@@ -114,7 +115,6 @@ export const RecipeDetails = () => {
           )}
         </div>
       </section>
-      <Footer />
     </>
   );
 };

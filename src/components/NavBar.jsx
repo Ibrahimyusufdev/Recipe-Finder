@@ -16,14 +16,19 @@ export const NavBar = () => {
         {/* Desktop link */}
         <ul className="hidden items-center gap-8 md:flex">
           <li>
-            <a className="text-dark transition hover:text-white" href="#">
-              Shopping List
-            </a>
+            <Link className="text-dark transition hover:text-white" to="/">
+              Home
+            </Link>
           </li>
           <li>
-            <a className="text-dark transition hover:text-white" href="#">
+            <Link className="text-dark transition hover:text-white" to="/shoppingList">
+              Shopping List
+            </Link>
+          </li>
+          <li>
+            <Link className="text-dark transition hover:text-white" to="/favoriteRecipe">
               Favorite Recipe
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -32,16 +37,21 @@ export const NavBar = () => {
         className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <ul className="flex flex-col items-center gap-4 p-4 pb-4">
-            <li>
-            <a className="text-dark underline transition hover:text-white" href="#">
-              Shopping List
-            </a>
+          <li>
+            <Link className="text-dark transition hover:text-white" to="/">
+              Home
+            </Link>
           </li>
           <li>
-            <a className="text-dark  underline transition hover:text-white" href="#">
+            <Link className="text-dark transition hover:text-white" to="/shoppingList">
+              Shopping List
+            </Link>
+          </li>
+          <li>
+            <Link className="text-dark transition hover:text-white" to="/favoriteRecipe">
               Favorite Recipe
-            </a>
-            </li>
+            </Link>
+          </li>
         </ul>
       </div>
     </header>
