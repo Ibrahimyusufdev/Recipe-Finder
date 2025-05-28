@@ -4,12 +4,12 @@ import { Footer } from './components/Footer.jsx';
 
 export const Layout = () => {
   return (
-    <>
+    <div className='min-h-screen'>
       <NavBar />
-      <main className='min-h-screen'>
+      <main>
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };

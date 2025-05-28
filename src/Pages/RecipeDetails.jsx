@@ -3,6 +3,8 @@ import { useRecipeStore } from "../store/useRecipeStore.js";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
 import { BackIcon } from "../assets/svgs.jsx";
+import { Toaster, toast } from "react-hot-toast";
+import { LoadingSpin } from "../components/LoadingSpin.jsx";
 
 export const RecipeDetails = () => {
   const fullRecipe = useRecipeStore((state) => state.fullRecipe);
@@ -21,11 +23,12 @@ export const RecipeDetails = () => {
   return (
     <>
       <section className="mt-4">
+        <Toaster position="top-right" />
         <div className="container mx-auto px-4">
           <Link className="mt-5" to="/">
             <BackIcon />
           </Link>
-          {loading && <p>Loading...</p>}
+          {loading && <LoadingSpin />}
           {error && <p>Error: {error}</p>}
           {!loading && !error && isEmptyRecipe && <p>No Recipe Found</p>}
           {!loading && !error && !isEmptyRecipe && (
@@ -50,7 +53,11 @@ export const RecipeDetails = () => {
                       <p className="text-sm text-dark">{ingredient.original}</p>
                       <button
                         className="rounded-md bg-orange px-4 py-2 text-sm text-white transition-colors hover:bg-orange/90"
-                        onClick={() => setShoppingList(ingredient)}
+                        onClick={() => {
+                          setShoppingList(ingredient);
+                          toast.success("Successfully added to Shopping List");
+
+                        }}
                       >
                         Add to Shopping List
                       </button>
