@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useDefaultStore = create((set) => ({
+export const useDefaultStore = create(() => ({
   defaultRecipe: [
     {
       id: 635675,
