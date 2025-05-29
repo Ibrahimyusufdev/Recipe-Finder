@@ -70,4 +70,4 @@ A modern, responsive React app to browse, view, and save healthy recipes. Built 
 
 ## License
 
-MIT License © 2025 Your Name
+MIT License © 2025 Ibrahim Yusuf
