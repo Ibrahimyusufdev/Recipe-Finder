@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 import { MenuBar } from "../assets/svgs.jsx";
 import { SearchIcon } from "../assets/svgs.jsx";
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 export const Search = () => {
   const [input, setInput] = useState("");
 
   const setFood = useRecipeStore((state) => state.setFood); // Set food variable in my store so I can acess input in other components
-  const recipes = useRecipeStore((state) => state.recipes);
   const searchRecipe = useRecipeStore((state) => state.searchRecipe);
 
   const handleSearch = (e) => {
@@ -17,13 +16,10 @@ export const Search = () => {
       searchRecipe(input);
       setFood(input);
       setInput("");
-      console.log(recipes);
+ 
     }
   };
 
-  useEffect(() => {
-    console.log(recipes);
-  }, [recipes]);
 
   return (
     <>

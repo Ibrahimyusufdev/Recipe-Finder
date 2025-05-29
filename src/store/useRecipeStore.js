@@ -57,7 +57,7 @@ export const useRecipeStore = create(
 
         try {
           const response = await axios.get(url);
-          console.log(response);
+      
 
           // set fetched data to my local recipe array & set loading to false
           set((state) => {

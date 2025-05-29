@@ -3,7 +3,7 @@ import { useRecipeStore } from "../store/useRecipeStore.js";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
 import { BackIcon } from "../assets/svgs.jsx";
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { LoadingSpin } from "../components/LoadingSpin.jsx";
 import { useEffect } from "react";
 
