@@ -33,7 +33,7 @@ A modern, responsive React app to browse, view, and save healthy recipes. Built 
 1. Clone the repo
 
    ```bash
-   git clone https://github.com/ibrahimyusufdev/recipe-explorer.git
+   git clone https://github.com/ibrahimyusufdev/recipe-finder.git
    cd recipe-finder
    ```
 
