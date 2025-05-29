@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MenuBar } from "../assets/svgs.jsx";
 import { Link } from "react-router-dom";
 import { CancelIcon } from "../assets/svgs.jsx";
+import LogoIcon from "../assets/LogoIcon.png"
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
