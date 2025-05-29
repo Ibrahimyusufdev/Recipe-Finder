@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MenuBar } from "../assets/svgs.jsx";
 import { Link } from "react-router-dom";
+import { CancelIcon } from "../assets/svgs.jsx";
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +9,7 @@ export const NavBar = () => {
     <header className="bg-orange">
       <nav className="container mx-auto flex items-center justify-between px-4 py-6">
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          <MenuBar />
+         {!isOpen ? <MenuBar /> : <CancelIcon />}
         </button>
         <p className="text-2xl text-dark">
           <strong className="font-bold">Recipe</strong> <span className="font-medium">finder</span>

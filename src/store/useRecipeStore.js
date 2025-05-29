@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 export const useRecipeStore = create(
   persist(
@@ -15,31 +16,35 @@ export const useRecipeStore = create(
           state.food = userInput;
         }),
       recipes: [],
-      fullRecipe: {},
 
       favoriteRecipe: [],
-      setFavoriteRecipe: (recipe) =>
+      setFavoriteRecipe: (recipe) => {
+        const alreadyExists = get().favoriteRecipe.some((item) => item.id === recipe.id);
+        if (alreadyExists) {
+          toast.error("Already added to favorite");
+          return;
+        }
         set((state) => {
-          const alreadyExists = state.favoriteRecipe.some((item) => item.id === recipe.id);
-          if (!alreadyExists) {
-            state.favoriteRecipe.push(recipe);
-            state.error = null;
-          } else {
-            state.error = "Already added to favorite";
-          }
-        }),
+          state.favoriteRecipe.push(recipe);
+        });
+        toast.success("Added to favorite");
+      },
 
       shoppingList: [],
-      setShoppingList: (ingredient) =>
+      setShoppingList: (ingredient) => {
+        const alreadyExists = get().shoppingList.some(
+          (item) => item.id === ingredient.id || item.original === ingredient.original
+        );
+        if (alreadyExists) {
+          toast.error("Already added to shopping List");
+          return;
+        }
+
         set((state) => {
-          const alreadyExists = state.shoppingList.some((item) => item.id === ingredient.id);
-          if (!alreadyExists) {
-            state.shoppingList.push(ingredient);
-            state.error = null;
-          } else {
-            state.error = "Already added to shopping list";
-          }
-        }),
+          state.shoppingList.push(ingredient);
+        });
+        toast.success("Added to shopping List");
+      },
 
       searchRecipe: async (userFood) => {
         set((state) => {
@@ -65,10 +70,13 @@ export const useRecipeStore = create(
             state.error = err.message;
             state.loading = false;
           });
-          console.log(err.message);
+          toast.error(err.message);
         }
       },
-
+      fullRecipe: {},
+      setFullRecipe: (recipe) => {
+        set((state) => state.fullRecipe = recipe)
+      },
       displayFullRecipes: async (id) => {
         set((state) => {
           state.loading = true;
@@ -96,6 +104,8 @@ export const useRecipeStore = create(
             state.error = err.message ?? "Something went wrong";
             state.loading = false;
           });
+
+          toast.error(err.message || "Something went wrong");
         }
       },
     })),

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRecipeStore } from "../store/useRecipeStore.js";
 import { MenuBar } from "../assets/svgs.jsx";
 import { SearchIcon } from "../assets/svgs.jsx";
+import { Toaster, toast } from "react-hot-toast";
 
 export const Search = () => {
   const [input, setInput] = useState("");
@@ -27,6 +28,7 @@ export const Search = () => {
   return (
     <>
       <section className="bg-orange py-8">
+        <Toaster position="top-right" />
         <div className="container mx-auto px-4">
           <form
             className="mt-6 flex sm:max-w-[40rem]  flex-wrap items-center gap-4 rounded-md bg-white p-2"

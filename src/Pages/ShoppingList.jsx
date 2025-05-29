@@ -15,7 +15,7 @@ export const ShoppingList = () => {
           <ul className="mt-5">
             <h1>Ingredients To Buy</h1>
             <ul>
-              {shoppingList.length !== 0 ? (
+              {shoppingList.length > 0 ? (
                 shoppingList.map((list) => <li key={list.id}>{list.original}</li>)
               ) : (
                 <p className="text-red-400">No Ingredient Found</p>
