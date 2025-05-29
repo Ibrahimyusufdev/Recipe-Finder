@@ -1,8 +1,4 @@
-Got it! Here's a polished GitHub README draft for your Recipe App project based on the code and context we've been discussing:
-
----
-
-# Recipe Explorer
+# Recipe Finder
 
 A modern, responsive React app to browse, view, and save healthy recipes. Built with React, Zustand for state management, React Router for routing, and Tailwind CSS for styling.
 
@@ -37,8 +33,8 @@ A modern, responsive React app to browse, view, and save healthy recipes. Built 
 1. Clone the repo
 
    ```bash
-   git clone https://github.com/yourusername/recipe-explorer.git
-   cd recipe-explorer
+   git clone https://github.com/ibrahimyusufdev/recipe-explorer.git
+   cd recipe-finder
    ```
 
 2. Install dependencies
@@ -75,7 +71,3 @@ A modern, responsive React app to browse, view, and save healthy recipes. Built 
 ## License
 
 MIT License © 2025 Your Name
-
----
-
-Would you like me to generate the markdown file content ready to copy-paste? Or customize any part?
