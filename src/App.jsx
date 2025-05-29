@@ -4,6 +4,7 @@ import { RecipeDetails } from './Pages/RecipeDetails.jsx';
 import { Layout } from './Layout.jsx';
 import { ShoppingList } from './Pages/ShoppingList.jsx';
 import { FavoriteRecipe } from './Pages/FavoriteRecipe.jsx';
+import { NoPage } from './Pages/NoPage.jsx';
 export const App = () => {
   return (
     <>
@@ -14,6 +15,7 @@ export const App = () => {
           <Route path='/recipe/:id' element={<RecipeDetails />} />
           <Route path='/favoriteRecipe' element={<FavoriteRecipe />} />
           <Route path='/shoppingList' element={<ShoppingList />} />
+          <Route path='*'  element={<NoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
